@@ -1,0 +1,13 @@
+@import "variables";
+
+:local(.top-button) {
+  float: right;
+  background-color: $primaryColor;
+  color: #FFF !important;
+  margin-top: 6px !important;
+}
+
+:local(.bottom-button) {
+  background-color: $primaryColor;
+  color: rgba(255, 255, 255, 0.65) !important;
+}

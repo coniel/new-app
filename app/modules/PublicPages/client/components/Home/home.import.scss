@@ -1,0 +1,13 @@
+@import "variables";
+
+:local(.container) {
+  height: 400px;
+  background-color: $primaryColor;
+}
+
+:local(.title) {
+  color: #FFF;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 4rem;
+}

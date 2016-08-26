@@ -1,0 +1,12 @@
+@import "reset.import";
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+
+html, body {
+  margin: 0;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote {
+  font-family: 'Roboto', sans-serif;
+}

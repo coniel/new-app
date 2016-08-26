@@ -1,0 +1,14 @@
+{
+  "root": "app",
+  "devServer": {
+    "host": "localhost"
+  },
+  "resolve": {
+    "alias": {
+      "handlebars": "handlebars/dist/handlebars.min.js"
+    }
+  },
+  "sass": {
+    "includePaths": [ "./app/ui", "./node_modules", "./node_modules/compass-mixins/lib" ]
+  }
+}

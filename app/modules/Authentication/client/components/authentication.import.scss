@@ -1,0 +1,163 @@
+@import "variables";
+@import 'compass/css3/transform';
+@import 'compass/css3/border-radius';
+@import 'compass/css3/box-shadow';
+@import 'compass/css3/flexbox';
+@import 'grid';
+
+:local(.right-column) {
+  background-color: $primaryColor;
+  min-height: calc(100vh - 60px);
+  height: 100%;
+  padding-top: 60px;
+}
+
+:local(.right-column-middle) {
+  background-color: $primaryColor;
+  min-height: calc(100vh - 60px);
+  @include align-items(center);
+  @include display-flex();
+  @include justify-content(center);
+}
+
+:local(.left-column) {
+  min-height: 100vh;
+  @include align-items(center);
+  @include display-flex();
+  @include justify-content(center);
+}
+
+:local(.login-show) {
+  padding: 60px;
+  font-family: "Montserrat" Open+Sans;
+}
+
+:local(.right-title) {
+  font-size: 64px!important;
+  color: #fff;
+  opacity: 0.8;
+}
+
+:local(.right-subtitle) {
+  color: #fff;
+  font-size: 25px;
+  width: 70%;
+  line-height: 1.5em;
+  opacity: 0.8;
+}
+
+:local(.login-link) {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #FFF;
+  font-weight: 300;
+}
+
+:local(.teacher-registration-image) {
+  width: 100%;
+  max-height: 500px;
+}
+
+:local(.auth-forms) {
+  max-width: 400px;
+  width: 100%;
+  display: block;
+}
+
+:local(.left-title) {
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+:local(.authentication-layout-container) {
+  @include breakpoint($tabletUp) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+    width: 100%;
+    overflow: visible;
+  }
+}
+
+:local(.wide) {
+  max-width: 500px;
+}
+
+:local(.authentication-form-container) {
+
+  @include breakpoint($tabletUp) {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    @include border-radius(2px !important);
+    overflow: visible;
+
+    &.padded {
+      padding: 20px;
+    }
+  }
+
+  @include breakpoint($mobile) {
+    overflow: scroll;
+    height: calc(100vh - 64px);
+    @include border-radius(0 !important);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0, 0) !important;
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0, 0) !important;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0, 0) !important;
+
+    .header {
+      display: none;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+
+  h2 {
+    font-weight: 400;
+  }
+}
+
+:local(.header) {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  @include border-top-radius(2px !important);
+
+  h2 {
+    margin: 0;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    font-size: 3em;
+    z-index: 1;
+    color: #FFF;
+  }
+
+  &:after {
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    position: absolute;
+  }
+}
+
+:local(.body) {
+  padding: 0 20px 0 20px;
+  position: relative;
+}
+
+:local(.layout-container) {
+  height: 100vh;
+  width: 100%;
+  background-color: $primaryColor;
+  position: relative;
+}

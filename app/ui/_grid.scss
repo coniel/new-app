@@ -1,0 +1,231 @@
+@import "susy/sass/susy";
+@import 'breakpoint-sass/stylesheets/breakpoint';
+
+$susy: (
+        columns: 12,  // The number of columns in your grid
+        gutters: 1/4, // The size of a gutter in relation to a single column
+        guter-poistion: after
+);
+$containerTopMargin: 20px;
+
+// BREAKPOINTS
+// Mobile
+$mobile: (min-width 320px) (max-width 767px);
+
+// Tablets
+$tablet: (min-width 768px) (max-width 1024px);
+$tabletLandscape: (min-width 768px) (max-width 1024px) (orientation landscape);
+$tabletPortrait: (min-width 768px) (max-width 1024px) (orientation portrait);
+$tabletUp: min-width 768px;
+$tabletDown: max-width 1024px;
+
+// Desktop
+$desktop: min-width 1025px;
+
+.container-100 {
+  @include container(100%);
+  margin-top: $containerTopMargin;
+}
+
+.container-80 {
+  @include container(80%);
+  margin-top: $containerTopMargin;
+}
+
+.container-1000 {
+  @include container(1040px);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: $containerTopMargin;
+}
+
+.container-800 {
+  @include container(800px);
+  margin-top: $containerTopMargin;
+}
+
+.container-no-margin {
+  margin-top: 0;
+}
+
+:global {
+  .container-full {
+    @include container(100%);
+  }
+
+  .container-800 {
+    @include container(80%);
+  }
+
+  .container-600 {
+    @include container(60%);
+  }
+
+  .container-700 {
+    @include container(70%);
+  }
+
+  .container-750 {
+    @include container(75%);
+  }
+
+  .container-400 {
+    @include container(40%);
+  }
+
+}
+
+
+
+$types: 4;
+@include susy-breakpoint($mobile, 4 inside) {
+
+  @for $i from 1 through 4 {
+    :global .col#{$i} {
+      @include span($i);
+    }
+
+    :global .mobilePush#{$i} {
+      @include push($i of 4);
+    }
+  }
+
+  @for $i from 5 through 12 {
+    :global .col#{$i} {
+      @include span(4);
+    }
+  }
+
+  @for $i from 1 through 4 {
+    :global .col-mobile-#{$i} {
+      @include span($i);
+    }
+  }
+
+  :global {
+    .desktop-only, .tablet-only, .tablet-up-only, .tablet-landscape-up-only {
+      display: none;
+    }
+
+    .gallery .gallery-item {
+      @include gallery(2);
+    }
+  }
+}
+
+@include susy-breakpoint($tabletPortrait, 8 inside) {
+
+  @for $i from 1 through 8 {
+    :global .col#{$i} {
+      @include span($i);
+    }
+
+    :global .tabletPush#{$i} {
+      @include push($i of 8);
+    }
+
+    :global .tabletPortraitPush#{$i} {
+      @include push($i of 8);
+    }
+  }
+
+  @for $i from 9 through 12 {
+    :global .col#{$i} {
+      @include span(8);
+    }
+  }
+
+  @for $i from 1 through 8 {
+    :global .col-tablet-#{$i} {
+      @include span($i);
+    }
+  }
+
+  @for $i from 1 through 8 {
+    :global .col-tablet-portrait-#{$i} {
+      @include span($i);
+    }
+  }
+
+  :global {
+    .desktop-only, .mobile-only, .tablet-landscape-only, .tablet-landscape-up-only {
+      display: none;
+    }
+
+    .gallery .gallery-item {
+      @include gallery(4);
+    }
+  }
+}
+
+@include susy-breakpoint($tabletLandscape, 8 inside) {
+  @for $i from 1 through 8 {
+    :global .col#{$i} {
+      @include span($i);
+    }
+
+    :global .tabletPush#{$i} {
+      @include push($i of 8);
+    }
+
+    :global .tabletLandscapePush#{$i} {
+      @include push($i of 8);
+    }
+  }
+
+  @for $i from 1 through 8 {
+    :global .col-tablet-#{$i} {
+      @include span($i);
+    }
+  }
+
+  @for $i from 9 through 12 {
+    :global .col#{$i} {
+      @include span(8);
+    }
+  }
+
+  @for $i from 1 through 8 {
+    :global .col-tablet-landscape-#{$i} {
+      @include span($i);
+    }
+  }
+
+  :global {
+    .desktop-only, .mobile-only, .tablet-portrait-only, .tablet-portrait-down-only {
+      display: none;
+    }
+
+    .gallery .gallery-item {
+      @include gallery(4);
+    }
+  }
+}
+
+@include susy-breakpoint($desktop, 12 inside) {
+  @for $i from 1 through 12 {
+    :global .col#{$i} {
+      @include span($i);
+    }
+
+    :global .desktopPush#{$i} {
+      @include push($i of 12);
+    }
+  }
+
+  @for $i from 1 through 12 {
+    :global .col-desktop-#{$i} {
+      @include span($i);
+    }
+  }
+
+  :global {
+    .mobile-only, .tablet-only, .tablet-down-only {
+      display: none;
+    }
+
+    .gallery .gallery-item {
+      @include gallery(3);
+    }
+  }
+}
