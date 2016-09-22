@@ -1,4 +1,4 @@
-Accounts.emailTemplates.siteName = Meteor.settings.public.siteName;
+Accounts.emailTemplates.siteName = Meteor.settings.public.appName;
 Accounts.emailTemplates.from = Meteor.settings.email.from;
 Accounts.emailTemplates.resetPassword.subject = function (user) {
     return "Reset password";

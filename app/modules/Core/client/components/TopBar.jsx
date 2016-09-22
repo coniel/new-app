@@ -33,7 +33,7 @@ class TopBar extends Component {
 
         return  (
             <AppBar
-                title="New App"
+                title={Meteor.settings.public.appName}
                 showMenuIconButton={false}
                 zDepth={0}
                 iconElementRight={rightComponents}
