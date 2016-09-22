@@ -69,7 +69,7 @@ const ProfilePicture = React.createClass({
                     <ProfilePictureEditor ref="profilePictureEditor" url={this.state.image} />
                     <div style={{paddingBottom: 20}}>
                         <UploadProgressBar for={Meteor.user()} style={{marginBottom: 20}} />
-                        <FlatButton label="Change image" secondary={true} style={{float: "left", width: 'auto'}}>
+                        <FlatButton label="actions.change_picture" secondary={true} style={{float: "left", width: 'auto'}}>
                             <FileInput for={Meteor.user()} onUploadStart={this._onUploadStart} onUploadSuccess={this._onUploadSuccess} />
                         </FlatButton>
                         <RaisedButton label="actions.done" primary={true} onTouchTap={this._getProfilePictureData} style={{float: "right"}} disabled={!this.state.uploadDone} />
@@ -82,7 +82,7 @@ const ProfilePicture = React.createClass({
                 <div style={{padding: "40px 0 40px 0", textAlign: 'center'}}>
                     <h3>Profile picture</h3>
                     <Avatar size={160}>{this.props.profile.initials()}</Avatar>
-                    <RaisedButton primary={true} label="Upload a picture" style={{marginTop: 20}}>
+                    <RaisedButton primary={true} label="actions.upload_picture" style={{marginTop: 20}}>
                         <FileInput for={Meteor.user()} onUploadStart={this._onUploadStart} onUploadSuccess={this._onUploadSuccess} />
                     </RaisedButton>
                 </div>

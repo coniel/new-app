@@ -5,7 +5,7 @@ import styles from './buttons.import.scss';
 export default class SwitchToLoginButton extends Component {
     render() {
         return (
-            <FlatButton label="Login" href="/login" className={styles["top-button"]} />
+            <FlatButton label="auth.labels.login" href="/login" className={styles["top-button"]} />
         )
     }
 };

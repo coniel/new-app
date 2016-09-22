@@ -9,8 +9,8 @@ import AuthenticationLayout from './Layout';
 import AuthenticationForm from './AuthenticationForm';
 import SwitchToLoginButton from './buttons/SwitchToLoginButton';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'ui/FlatButton';
+import RaisedButton from 'ui/RaisedButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
@@ -83,10 +83,10 @@ class ForgotPassword extends Component {
                 <div>
                     <p className={styles['reset-password-info']}>Enter your new password below.</p>
                     <ErrorMessage message={this.state.error} />
-                    <Form id="login-form" schema={resetPasswordFormSchema} onSubmit={this._handleSubmit}>
+                    <Form schema={resetPasswordFormSchema} onSubmit={this._handleSubmit}>
                         <TextInput type="password" name="password" />
                         <TextInput type="password" name="passwordConfirmation" />
-                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Submit" />}
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="actions.submit" />}
                     </Form>
                 </div>
             )

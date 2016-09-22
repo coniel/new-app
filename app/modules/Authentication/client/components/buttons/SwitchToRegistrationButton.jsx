@@ -5,7 +5,7 @@ import styles from './buttons.import.scss';
 export default class SwitchToRegistrationButton extends Component {
     render() {
         return (
-            <FlatButton label="Register" href="/register" className={styles["top-button"]} />
+            <FlatButton label="auth.labels.register" href="/register" className={styles["top-button"]} />
         )
     }
 };

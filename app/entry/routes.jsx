@@ -1,5 +1,5 @@
 import { Route } from 'react-router';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import ReactRouterSSR from 'react-router-ssr';
 import publicRoutes from 'modules/PublicPages/client/routes';
 import dashboardRoutes from 'modules/Dashboard/client/routes';

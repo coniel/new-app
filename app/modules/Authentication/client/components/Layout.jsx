@@ -3,7 +3,7 @@ import styles from './authentication.import.scss';
 import { Motion, spring, presets } from 'react-motion';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
+import FlatButton from 'ui/FlatButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 

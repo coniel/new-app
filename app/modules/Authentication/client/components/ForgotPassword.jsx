@@ -8,14 +8,15 @@ import AuthenticationLayout from './Layout';
 import AuthenticationForm from './AuthenticationForm';
 import SwitchToLoginButton from './buttons/SwitchToLoginButton';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'ui/FlatButton';
+import RaisedButton from 'ui/RaisedButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
 import { TextInput, SubmitButton } from 'react-ss-form-handler-material-ui';
 import ErrorMessage from 'ui/ErrorMessage';
 import ButtonLoader from 'ui/ButtonLoader';
+import { FormattedMessage } from 'react-intl';
 
 var loginFormSchema = User.getSubSchema([
     'emails.$.address'
@@ -83,11 +84,11 @@ class ForgotPassword extends Component {
         return (
             <AuthenticationLayout topButton={<SwitchToLoginButton />}>
                 <AuthenticationForm title="reset" backgroundImage="/img/login-background.png">
-                    <p className={styles['reset-password-info']}>Enter your email address below. You will receive an email with a link to reset your password.</p>
+                    <p className={styles['reset-password-info']}><FormattedMessage id="auth.instructions.forgot_password" /></p>
                     <ErrorMessage message={this.state.otherError} />
-                    <Form id="login-form" schema={loginFormSchema} onSubmit={this._handleSubmit} doc={doc} errors={this.state.formErrors}>
+                    <Form schema={loginFormSchema} onSubmit={this._handleSubmit} doc={doc} errors={this.state.formErrors}>
                         <TextInput name="email" />
-                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Submit" />}
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="actions.submit" />}
                     </Form>
                 </AuthenticationForm>
             </AuthenticationLayout>

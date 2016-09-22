@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import MUIRaisedButton from 'material-ui/RaisedButton';
 import {routerShape} from 'react-router/lib/PropTypes';
 
@@ -14,7 +14,6 @@ class RaisedButton extends Component {
         if (this.props.onTouchTap) {
             this.props.onTouchTap();
         }
-
         this.context.router.push(this.props.href);
     }
 
@@ -36,23 +35,26 @@ class RaisedButton extends Component {
             onTouchTap = this._navigateTo;
         }
 
+        let label = this.props.label;
+
+        if (typeof this.props.i18n === 'undefined' || this.props.i18n !== false){
+            label = this.context.intl.formatMessage({id: label}, this.props.values);
+        }
+
         return (
             <MUIRaisedButton
                 style={style}
-                label={this.props.label}
+                label={label}
                 onTouchTap={onTouchTap}
                 className={this.props.className}
-                primary={this.props.primary}
-                secondary={this.props.secondary}
-            >
-                {this.props.children}
-            </MUIRaisedButton>
+            />
         )
     }
 }
 
 RaisedButton.contextTypes = {
-    router: routerShape.isRequired
+    router: routerShape.isRequired,
+    intl: PropTypes.object.isRequired
 };
 
 export default RaisedButton;

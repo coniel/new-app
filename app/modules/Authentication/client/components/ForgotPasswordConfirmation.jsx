@@ -9,11 +9,12 @@ import AuthenticationLayout from './Layout';
 import AuthenticationForm from './AuthenticationForm';
 import SwitchToLoginButton from './buttons/SwitchToLoginButton';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'ui/FlatButton';
+import RaisedButton from 'ui/RaisedButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import SVGIcon from 'ui/SVGIcon';
+import { FormattedMessage } from 'react-intl';
 
 var loginFormSchema = User.getSubSchema([
     'emails.$.address'
@@ -53,9 +54,9 @@ class ForgotPassword extends Component {
             <AuthenticationLayout topButton={<SwitchToLoginButton />}>
                 <div className={styles['forgot-password-confirmation']}>
                     <SVGIcon icon="email-notification.svg" size={150} />
-                    <h2>You've got mail!</h2>
-                    <p>We've sent you an email with a link to reset your password to <strong>{this.props.params.email}</strong>.</p>
-                    <Link to={"/forgot-password"}><FlatButton label="Wrong email address?" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} /></Link>
+                    <h2><FormattedMessage id="auth.instructions.forgot_password_confirmation.title" /></h2>
+                    <p><FormattedMessage id="auth.instructions.forgot_password_confirmation.body" values={{email: <b>{this.props.params.email}</b>}} /></p>
+                    <Link to={"/forgot-password"}><FlatButton label="auth.labels.wrong_email" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} /></Link>
                 </div>
             </AuthenticationLayout>
         )

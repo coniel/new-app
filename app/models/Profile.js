@@ -4,12 +4,12 @@ Profile.appendSchema({
     firstName: {
         type: String,
         max: 60,
-        label: "First name"
+        label: "labels.first_name"
     },
     lastName: {
         type: String,
         max: 60,
-        label: "Last name"
+        label: "labels.last_name"
     },
     avatar: {
         type: Object,

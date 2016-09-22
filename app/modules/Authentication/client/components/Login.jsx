@@ -9,8 +9,7 @@ import AuthenticationLayout from './Layout';
 import AuthenticationForm from './AuthenticationForm';
 import SwitchToRegistrationButton from './buttons/SwitchToRegistrationButton';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'ui/FlatButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
@@ -27,11 +26,6 @@ var loginFormSchema = User.getSubSchema([
 ], {
     renameKeys: {
         'emails.$.address': 'email'
-    },
-    modifySchema: {
-        'emails.$.address': {
-            label: "Email"
-        }
     },
     extend: loginFormSchemaExtension
 });
@@ -87,7 +81,7 @@ class Login extends Component {
 
     render() {
 
-        let bottomButton = <Link to={"/forgot-password/" + this.state.email}><FlatButton label="Forgot password?" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} /></Link>;
+        let bottomButton = <Link to={"/forgot-password/" + this.state.email}><FlatButton label="auth.labels.forgot_password" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} /></Link>;
         let doc = {};
 
         if (Meteor.isClient) {
@@ -96,12 +90,12 @@ class Login extends Component {
 
         return (
             <AuthenticationLayout bottomButton={bottomButton} topButton={<SwitchToRegistrationButton />}>
-                <AuthenticationForm title="hello" backgroundImage="/img/login-background.png">
+                <AuthenticationForm title="auth.labels.hello" backgroundImage="/img/login-background.png">
                     <ErrorMessage message={this.state.otherError} />
-                    <Form id="login-form" ref="form" schema={loginFormSchema} onSubmit={this._login} doc={doc} resetOnSubmit={false} errors={this.state.formErrors}>
+                    <Form ref="form" schema={loginFormSchema} onSubmit={this._login} doc={doc} resetOnSubmit={false} errors={this.state.formErrors}>
                         <TextInput errorText={this.state.emailError} name="email" onChange={(value) => {this.setState({email: value})}} />
                         <TextInput type="password" name="password" />
-                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Login" />}
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="auth.actions.login" />}
                     </Form>
                 </AuthenticationForm>
             </AuthenticationLayout>

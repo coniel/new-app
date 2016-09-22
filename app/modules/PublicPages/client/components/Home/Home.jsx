@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'ui/RaisedButton';
 import App from 'modules/Core/client/components/App';
 import style from './home.import.scss';
 

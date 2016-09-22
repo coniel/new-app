@@ -11,8 +11,8 @@ import AuthenticationForm from './AuthenticationForm';
 import SwitchToLoginButton from './buttons/SwitchToLoginButton';
 import AlreadyHaveAccountButton from './buttons/AlreadyHaveAccountButton';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'ui/FlatButton';
+import RaisedButton from 'ui/RaisedButton';
 import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
@@ -85,14 +85,14 @@ class Registration extends Component {
     render() {
         return (
             <AuthenticationLayout bottomButton={<AlreadyHaveAccountButton />} topButton={<SwitchToLoginButton />}>
-                <AuthenticationForm title="welcome" backgroundImage="/img/login-background.png">
+                <AuthenticationForm title="auth.labels.welcome" backgroundImage="/img/login-background.png">
                     <ErrorMessage message={this.state.otherError} />
-                    <Form id="student-registration-form" schema={registrationFormSchema} onSubmit={this._register} errors={this.state.formErrors}>
+                    <Form schema={registrationFormSchema} onSubmit={this._register} errors={this.state.formErrors}>
                         <TextInput name="firstName" layoutStyle="first-half" />
                         <TextInput name="lastName" layoutStyle="second-half" />
                         <TextInput name="email" />
                         <TextInput type="password" name="password" />
-                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Register" />}
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="auth.actions.register" />}
                     </Form>
                 </AuthenticationForm>
             </AuthenticationLayout>

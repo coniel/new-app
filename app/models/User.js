@@ -1,5 +1,5 @@
 import User from 'meteor-user-model'
-import { UploadableModel } from 'meteor-uploadable';
+//import { UploadableModel } from 'meteor-uploadable';
 
 /**
  * Represents a User
@@ -7,7 +7,7 @@ import { UploadableModel } from 'meteor-uploadable';
  * @param {Object} document An object representing a user
  */
 
-UploadableModel.makeUploadable(User, "user");
+//UploadableModel.makeUploadable(User, "user");
 
 User.appendSchema({
     accountType: {
@@ -19,7 +19,7 @@ User.appendSchema({
         min: 4,
         max: 20,
         optional: true,
-        label: "Username"
+        label: "labels.username"
     },
     services: {
         type: Object,
@@ -35,7 +35,7 @@ User.appendSchema({
     "emails.$.address": {
         type: String,
         max: 300,
-        label: "Email"
+        label: "labels.email"
     },
     "emails.$.verified": {
         type: Boolean,

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import MUIFlatButton from 'material-ui/FlatButton';
 import {routerShape} from 'react-router/lib/PropTypes';
 
@@ -14,7 +14,6 @@ class FlatButton extends Component {
         if (this.props.onTouchTap) {
             this.props.onTouchTap();
         }
-        console.log(this.context);
         this.context.router.push(this.props.href);
     }
 
@@ -36,10 +35,16 @@ class FlatButton extends Component {
             onTouchTap = this._navigateTo;
         }
 
+        let label = this.props.label;
+
+        if (typeof this.props.i18n === 'undefined' || this.props.i18n !== false){
+            label = this.context.intl.formatMessage({id: label}, this.props.values);
+        }
+
         return (
             <MUIFlatButton
                 style={style}
-                label={this.props.label}
+                label={label}
                 onTouchTap={onTouchTap}
                 className={this.props.className}
             />
@@ -48,7 +53,8 @@ class FlatButton extends Component {
 }
 
 FlatButton.contextTypes = {
-    router: routerShape.isRequired
+    router: routerShape.isRequired,
+    intl: PropTypes.object.isRequired
 };
 
 export default FlatButton;
