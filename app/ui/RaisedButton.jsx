@@ -47,6 +47,8 @@ class RaisedButton extends Component {
                 label={label}
                 onTouchTap={onTouchTap}
                 className={this.props.className}
+                primary={this.props.primary}
+                secondary={this.props.secondary}
             />
         )
     }
