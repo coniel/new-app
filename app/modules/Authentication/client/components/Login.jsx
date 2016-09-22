@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import {routerShape} from 'react-router/lib/PropTypes';
+import { routerShape } from 'react-router/lib/PropTypes';
+import { Link } from 'react-router';
 import styles from './authentication.import.scss';
 import PasswordSchema from '../schemas/Password';
 import User from 'models/User';
@@ -14,6 +15,8 @@ import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
 import { TextInput, SubmitButton } from 'react-ss-form-handler-material-ui';
+import ButtonLoader from 'ui/ButtonLoader';
+import ErrorMessage from 'ui/ErrorMessage';
 
 var loginFormSchemaExtension = {
     password: PasswordSchema
@@ -27,8 +30,7 @@ var loginFormSchema = User.getSubSchema([
     },
     modifySchema: {
         'emails.$.address': {
-            optional: true,
-            label: "Username or email"
+            label: "Email"
         }
     },
     extend: loginFormSchemaExtension
@@ -39,19 +41,45 @@ class Login extends Component {
     constructor() {
         super();
 
+        this.state = {
+            email: "",
+            loading: false,
+            formErrors: {},
+            otherError: false
+        }
+
         this._login = this._login.bind(this);
     }
 
     _login(credentials) {
+
+        this.setState({
+            loading: true,
+            formErrors: {},
+            otherError: false
+        });
+
         Meteor.loginWithPassword(credentials.email, credentials.password, (error) => {
             if (error) {
-                console.log(error);
+                var newState = {
+                    loading: false,
+                    formErrors: {}
+                };
+
+                if (error.reason === "User not found") {
+                    newState.formErrors.email = "We couldn't find an account with this email";
+                } else if (error.reason === "Incorrect password") {
+                    newState.formErrors.password = "Incorrect password";
+                } else {
+                    newState.otherError = error.reason;
+                }
+                this.setState(newState);
             } else {
                 if (Session.get("authenticationRedirect")) {
                     this.context.router.push(Session.get("authenticationRedirect"));
                     Session.set("authenticationRedirect", false);
                 } else {
-                    this.context.router.push('/dashboard');
+                    this.context.router.push('/pricelists');
                 }
             }
         });
@@ -59,7 +87,7 @@ class Login extends Component {
 
     render() {
 
-        let bottomButton = <FlatButton label="Forgot password?" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} />;
+        let bottomButton = <Link to={"/forgot-password/" + this.state.email}><FlatButton label="Forgot password?" style={{backgroundColor: Colors.primaryColor, color: "rgba(255, 255, 255, 0.65)"}} /></Link>;
         let doc = {};
 
         if (Meteor.isClient) {
@@ -69,10 +97,11 @@ class Login extends Component {
         return (
             <AuthenticationLayout bottomButton={bottomButton} topButton={<SwitchToRegistrationButton />}>
                 <AuthenticationForm title="hello" backgroundImage="/img/login-background.png">
-                    <Form id="login-form" schema={loginFormSchema} onSubmit={this._login} doc={doc}>
-                        <TextInput name="email" />
+                    <ErrorMessage message={this.state.otherError} />
+                    <Form id="login-form" ref="form" schema={loginFormSchema} onSubmit={this._login} doc={doc} resetOnSubmit={false} errors={this.state.formErrors}>
+                        <TextInput errorText={this.state.emailError} name="email" onChange={(value) => {this.setState({email: value})}} />
                         <TextInput type="password" name="password" />
-                        <SubmitButton fullWidth={true} label="Login" />
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Login" />}
                     </Form>
                 </AuthenticationForm>
             </AuthenticationLayout>

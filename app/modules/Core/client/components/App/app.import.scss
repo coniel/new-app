@@ -1,12 +1,55 @@
 @import "reset.import";
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic);
 
 html, body {
   margin: 0;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote {
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
+  color: #757575;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+h6 {
+  margin: 5px 0 5px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #29b6f6;
+}
+
+body, p {
+  font-family: 'Open Sans', sans-serif;
+  //text-align: justify;
+  color: #757575;
+}
+
+
+a {
+  text-decoration: none;
+  color: #42A5F5;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 1s ease-in-out 0s;
+  transition-delay: 5000s;
+}
+
+.clearfix {
+  content: "";
+  clear: both;
 }

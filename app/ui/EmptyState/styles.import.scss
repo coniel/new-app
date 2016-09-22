@@ -1,0 +1,47 @@
+@import "variables";
+
+:local {
+  .container {
+    text-align: center;
+  }
+
+  .icon {
+    margin-top: 72pt;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .title {
+    margin: 24pt auto 12pt auto;
+    font-size: 28pt;
+    font-family: $headerFont;
+    font-weight: $lightFontWeight;
+    opacity: 0.8;
+    color: $primaryColor;
+    max-width: 600px;
+  }
+
+  .paragraph {
+    margin: 0 auto 12pt auto;
+    font-size: 14pt;
+    font-weight: $regularFontWeight;
+    font-family: $headerFont;
+    opacity: 0.8;
+    color: $primaryColor;
+    line-height: 26px;
+    max-width: 600px;
+    text-align: justify;
+  }
+
+  .blue-theme-container {
+    background-color: $primaryColor;
+  }
+
+  .blue-theme-text {
+    color: #FFF;
+  }
+
+  .button {
+    margin-top: 24pt;
+  }
+}

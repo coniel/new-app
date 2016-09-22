@@ -9,5 +9,3 @@ export default class SwitchToLoginButton extends Component {
         )
     }
 };
-
-export default SwitchToLoginButton;

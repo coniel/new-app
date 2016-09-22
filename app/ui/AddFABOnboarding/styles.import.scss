@@ -1,0 +1,33 @@
+@import "variables";
+
+:local {
+
+  .container {
+    position: fixed;
+    bottom: 30px;
+    right: 94px;
+    width: 230px;
+    height: 110px;
+  }
+
+  .arrow {
+    width: 140px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .paragraph {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 220px;
+    font-size: 14pt;
+    font-weight: $regularFontWeight;
+    font-family: $headerFont;
+    opacity: 0.8;
+    color: $secondaryColor;
+    line-height: 26px;
+    max-width: 600px;
+  }
+}

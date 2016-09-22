@@ -65,6 +65,7 @@ class IconButton extends Component {
                 iconClassName={this._iconClassName()}
                 tooltip={tooltip}
                 onTouchTap={onTouchTap}
+                style={this.props.style}
             >
                 {this.props.children}
             </MUIIconButton>

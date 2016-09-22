@@ -1,10 +1,13 @@
 import User from 'meteor-user-model'
+import { UploadableModel } from 'meteor-uploadable';
 
 /**
  * Represents a User
  * @class UserModel
  * @param {Object} document An object representing a user
  */
+
+UploadableModel.makeUploadable(User, "user");
 
 User.appendSchema({
     accountType: {

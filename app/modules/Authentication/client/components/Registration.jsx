@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import {routerShape} from 'react-router/lib/PropTypes';
+import SimpleSchema from 'simpl-schema';
 import styles from './authentication.import.scss';
 import PasswordSchema from '../schemas/Password';
 import Profile from 'models/Profile';
@@ -16,6 +17,8 @@ import IconButton from 'ui/IconButton';
 import Colors from 'ui/Colors';
 import Form from 'react-ss-form-handler';
 import { TextInput, SubmitButton } from 'react-ss-form-handler-material-ui';
+import ButtonLoader from 'ui/ButtonLoader';
+import ErrorMessage from 'ui/ErrorMessage';
 
 var profileSchema = Profile.getSubSchema(["firstName", "lastName"], null)._schema;
 var userSchema = User.getSubSchema(["emails.$.address", "username"], {
@@ -38,19 +41,43 @@ class Registration extends Component {
     constructor() {
         super();
 
+        this.state = {
+            loading: false,
+            formErrors: {},
+            otherError: false
+        }
+
         this._register = this._register.bind(this);
     }
 
     _register(doc) {
         doc.accountType = 'user';
 
+        this.setState({
+            loading: true,
+            formErrors: {},
+            otherError: false
+        });
+
         Accounts.createUser(doc, (error) => {
-            if (Meteor.isClient) {
+            if (!error) {
                 if (Session.get("authenticationRedirect")) {
                     this.context.router.replace(Session.get("authenticationRedirect"));
                 } else {
-                    this.context.router.replace('/dashboard');
+                    this.context.router.replace('/pricelists');
                 }
+            } else {
+                var newState = {
+                    loading: false,
+                    formErrors: {}
+                };
+
+                if (error.reason === "Email already exists.") {
+                    newState.formErrors.email = "An account with this email address already exists";
+                } else {
+                    newState.otherError = error.reason;
+                }
+                this.setState(newState);
             }
         });
     }
@@ -59,12 +86,13 @@ class Registration extends Component {
         return (
             <AuthenticationLayout bottomButton={<AlreadyHaveAccountButton />} topButton={<SwitchToLoginButton />}>
                 <AuthenticationForm title="welcome" backgroundImage="/img/login-background.png">
-                    <Form id="student-registration-form" schema={registrationFormSchema} onSubmit={this._register}>
+                    <ErrorMessage message={this.state.otherError} />
+                    <Form id="student-registration-form" schema={registrationFormSchema} onSubmit={this._register} errors={this.state.formErrors}>
                         <TextInput name="firstName" layoutStyle="first-half" />
                         <TextInput name="lastName" layoutStyle="second-half" />
                         <TextInput name="email" />
                         <TextInput type="password" name="password" />
-                        <SubmitButton fullWidth={true} label="Register" />
+                        {this.state.loading? <ButtonLoader /> : <SubmitButton fullWidth={true} label="Register" />}
                     </Form>
                 </AuthenticationForm>
             </AuthenticationLayout>

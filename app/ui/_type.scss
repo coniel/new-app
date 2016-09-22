@@ -1,0 +1,15 @@
+h2 {
+  font-size: 24px;
+  line-height: 32px;
+  padding-top: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.870588);
+}
+
+.right-angle-divider {
+  &:before {
+    font-size: .6em;
+  }
+}

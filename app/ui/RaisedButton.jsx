@@ -42,7 +42,11 @@ class RaisedButton extends Component {
                 label={this.props.label}
                 onTouchTap={onTouchTap}
                 className={this.props.className}
-            />
+                primary={this.props.primary}
+                secondary={this.props.secondary}
+            >
+                {this.props.children}
+            </MUIRaisedButton>
         )
     }
 }
